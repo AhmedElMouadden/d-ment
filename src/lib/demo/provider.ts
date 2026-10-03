@@ -16,7 +16,14 @@ export class DemoProvider implements AccountingProvider {
   }
 
   async listCustomers() {
-    return this.data.customers.map(({ language: _l, ccEmail: _c, excluded: _e, pausedUntil: _p, ...c }) => c);
+    return this.data.customers.map((c) => ({
+      externalId: c.externalId,
+      displayName: c.displayName,
+      companyName: c.companyName,
+      contactName: c.contactName,
+      email: c.email,
+      active: c.active,
+    }));
   }
 
   async listInvoices(): Promise<ExternalInvoice[]> {

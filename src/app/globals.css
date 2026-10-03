@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Marque : vert sapin, rassurant et « argent qui rentre » */
+  --color-brand-50: #ecfdf6;
+  --color-brand-100: #d1fae8;
+  --color-brand-200: #a6f2d4;
+  --color-brand-300: #6de4bb;
+  --color-brand-400: #34cd9d;
+  --color-brand-500: #12b386;
+  --color-brand-600: #07916d;
+  --color-brand-700: #08745a;
+  --color-brand-800: #0b5c49;
+  --color-brand-900: #0b4b3d;
+  --color-brand-950: #032a23;
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-line: var(--line);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --canvas: #f7f8f7;
+  --surface: #ffffff;
+  --surface-muted: #f1f3f2;
+  --ink: #111816;
+  --ink-muted: #4b5652;
+  --ink-subtle: #8a948f;
+  --line: #e2e6e4;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --canvas: #0b0f0e;
+    --surface: #121816;
+    --surface-muted: #1a2220;
+    --ink: #eef2f0;
+    --ink-muted: #a9b4af;
+    --ink-subtle: #6e7a75;
+    --line: #26302d;
+    color-scheme: dark;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
 }
