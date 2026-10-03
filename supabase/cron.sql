@@ -26,3 +26,6 @@ revoke all on function public.dument_call_cron(text) from public, anon, authenti
 
 -- Synchro QuickBooks chaque jour à 10 h UTC (6 h à Montréal l'été, 5 h l'hiver)
 select cron.schedule('dument-sync', '0 10 * * *', $$ select public.dument_call_cron('/api/cron/sync') $$);
+
+-- Planification puis envoi des relances chaque jour à 13 h UTC (9 h à Montréal l'été, 8 h l'hiver)
+select cron.schedule('dument-remind', '0 13 * * *', $$ select public.dument_call_cron('/api/cron/remind') $$);
