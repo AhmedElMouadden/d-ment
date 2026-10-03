@@ -11,7 +11,7 @@ export function DataCard({ uiLang }: { uiLang: "fr" | "en" }) {
   const t = (uiLang === "fr" ? fr : en).settings.data;
   const [open, setOpen] = useState(false);
   const [word, setWord] = useState("");
-  const [, action, pending] = useActionState(deleteAccount, undefined);
+  const [state, action, pending] = useActionState(deleteAccount, undefined);
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-3">
@@ -26,6 +26,7 @@ export function DataCard({ uiLang }: { uiLang: "fr" | "en" }) {
         <form action={action} className="space-y-3 rounded-xl bg-rose-50 p-4 dark:bg-rose-950/40">
           <p className="text-sm text-rose-800 dark:text-rose-200">{t.deleteConfirm}</p>
           <Input name="confirm" value={word} onChange={(e) => setWord(e.target.value)} placeholder={t.deleteWord} aria-label={t.deleteConfirm} />
+          {state?.billing && <p role="alert" className="text-sm font-medium text-rose-800 dark:text-rose-200">{t.deleteBillingError}</p>}
           <Button type="submit" disabled={pending || word.trim().toUpperCase() !== t.deleteWord} className="bg-rose-600 hover:bg-rose-700 disabled:bg-rose-300">
             <Trash2 className="size-4" aria-hidden /> {t.delete}
           </Button>

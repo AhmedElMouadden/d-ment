@@ -106,6 +106,7 @@ export const fr = {
       delete: "Supprimer mon compte et toutes mes données",
       deleteConfirm: "Tapez SUPPRIMER pour confirmer. Cette action est irréversible.",
       deleteWord: "SUPPRIMER",
+      deleteBillingError: "Impossible d\u2019annuler l\u2019abonnement Stripe pour le moment. Rien n\u2019a été supprimé ; réessayez dans quelques minutes.",
       privacy: "Politique de confidentialité",
     },
     qbo: {

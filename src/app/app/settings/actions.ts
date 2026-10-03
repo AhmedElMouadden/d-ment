@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getDictionary } from "@/i18n/server";
 import { decryptSecret } from "@/lib/crypto";
+import { isStripeConfigured, stripe } from "@/lib/billing/stripe";
 import { qboConfig } from "@/lib/qbo/config";
 import { revokeToken } from "@/lib/qbo/oauth";
 import { requireSession } from "@/lib/session";
@@ -75,8 +76,24 @@ export async function deleteAccount(_: unknown, form: FormData) {
   if (word !== "SUPPRIMER" && word !== "DELETE") return { error: true };
   if (session.mode === "demo") redirect("/");
 
-  await disconnectQbo().catch(() => undefined);
   const db = createSupabaseAdminClient();
+  // Annuler l'abonnement d'abord : si Stripe échoue, on ne supprime rien,
+  // sinon le client continuerait d'être facturé sans compte.
+  const { data: sub } = await db
+    .from("subscriptions")
+    .select("stripe_subscription_id, status")
+    .eq("organization_id", session.organizationId)
+    .maybeSingle();
+  if (sub?.stripe_subscription_id && sub.status !== "canceled" && isStripeConfigured()) {
+    try {
+      await stripe().subscriptions.cancel(sub.stripe_subscription_id);
+    } catch (e) {
+      const code = (e as { code?: string }).code;
+      if (code !== "resource_missing") return { error: true, billing: true };
+    }
+  }
+
+  await disconnectQbo().catch(() => undefined);
   await db.rpc("delete_organization_data", { p_org: session.organizationId });
   await db.auth.admin.deleteUser(session.userId);
   const supabase = await createSupabaseServerClient();

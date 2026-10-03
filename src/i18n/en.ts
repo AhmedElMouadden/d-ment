@@ -107,6 +107,7 @@ export const en: Dictionary = {
       delete: "Delete my account and all my data",
       deleteConfirm: "Type DELETE to confirm. This cannot be undone.",
       deleteWord: "DELETE",
+      deleteBillingError: "We couldn\u2019t cancel your Stripe subscription right now. Nothing was deleted; please try again in a few minutes.",
       privacy: "Privacy policy",
     },
     qbo: {

@@ -112,13 +112,13 @@ Pour une facture ouverte d'un client, à la date du jour `D` (fuseau de l'org) :
 |---|---|---|
 | 0 | **Socle** : projet Next.js, Tailwind, i18n FR/EN, mise en page, auth Supabase (mot de passe + lien magique) | `npm run dev`, créer un compte, recevoir le lien magique, basculer FR/EN |
 | 1 | **Modèle de données + RLS** ✅ fait | `npm run test:db` : base Postgres jetable, applique la migration, vérifie l'isolation entre deux organisations, l'illisibilité des jetons, l'absence de doublons et la suppression en cascade |
-| 1b | **Mode démo** ✅ fait (données) ; écran « Charger la démo » à venir | `npm test` : données déterministes, toutes les tranches d'âge, toutes les étapes, cas particuliers. Ensuite : bouton « Essayer avec des données fictives » à l'accueil |
+| 1b | **Mode démo** ✅ fait (données + bouton « Essayer la démo ») | `npm test` : données déterministes, toutes les tranches d'âge, toutes les étapes, cas particuliers. Ensuite : bouton « Essayer avec des données fictives » à l'accueil |
 | 2 | **Connexion QuickBooks (sandbox)** ✅ code fait, à tester avec votre compte Intuit : OAuth 2.0, jetons chiffrés, rafraîchissement auto, synchro quotidienne + bouton | Compte développeur Intuit gratuit + compagnie sandbox ; connecter, cliquer « Synchroniser », voir les factures ; tests unitaires du chiffrement et du mappage QBO → modèle |
 | 3 | **Moteur de relance** ✅ fait (planification ; l'envoi arrive avec l'étape 4) | Tests Vitest à dates simulées : bonne étape au bon jour, arrêt au paiement, aucun doublon (deux exécutions le même jour), exclusions, pauses, désinscription, regroupement, approbation |
 | 4 | **Modèles de courriels** ✅ fait FR (québécois) / EN × 3 tons, variables, aperçu en direct, lien de désinscription | Page d'aperçu ; tests de rendu des variables ; envoi réel vers votre propre adresse en mode test Resend |
 | 5 | **Tableau de bord** ✅ fait (+ factures, clients, approbations, journal) : total à recevoir, balance âgée, délai moyen, encaissé après relance, prochaines relances, historique par facture | En mode démo : chiffres vérifiés contre des valeurs calculées à la main dans les tests |
-| 6 | **Stripe** : essai 14 jours, 39 $ / 79 $ CA, Checkout, portail, webhook, blocage des envois si inactif | Mode test Stripe + `stripe listen` ; cartes de test 4242… ; passer l'essai à expiré et vérifier que les envois s'arrêtent |
-| 7 | **Conformité et livraison** : confidentialité, export JSON/CSV, suppression du compte, README de déploiement pas à pas, `.env.example` | Exporter, supprimer, vérifier la base vide ; suivre le README sur un projet Supabase et Vercel neufs |
+| 6 | **Stripe** ✅ fait : essai 14 jours, 39 $ / 79 $ CA, Checkout, portail, webhook, blocage des envois si inactif | Mode test Stripe + `stripe listen` ; cartes de test 4242… ; passer l'essai à expiré et vérifier que les envois s'arrêtent |
+| 7 | **Conformité et livraison** ✅ fait : confidentialité, export JSON/CSV, suppression du compte, README de déploiement pas à pas, `.env.example` | Exporter, supprimer, vérifier la base vide ; suivre le README sur un projet Supabase et Vercel neufs |
 
 **Extras d'ergonomie prévus** (sans sortir du périmètre) : accueil guidé en
 3 étapes, aperçu « voici ce qui partira demain », actions en un clic
