@@ -4,6 +4,8 @@ import { getDictionary } from "@/i18n/server";
 import { requireSession } from "@/lib/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { disconnectQbo } from "./actions";
+import { DataCard } from "./data-card";
+import { OrgForm } from "./org-form";
 import { SyncButton } from "./qbo-card";
 
 type QboStatusKey = "connected" | "denied" | "invalid_state" | "error" | "not_configured";
@@ -24,6 +26,16 @@ export default async function SettingsPage({ searchParams }: PageProps<"/app/set
       .select("company_name, environment, status, last_sync_at, last_sync_error")
       .maybeSingle();
     conn = data;
+  }
+
+  let orgValues = { senderName: session.organizationName, replyTo: session.email, defaultLanguage: "fr" as "fr" | "en", approval: true };
+  if (session.mode === "live") {
+    const supabase = await createSupabaseServerClient();
+    const { data: org } = await supabase.from("organizations").select("name, sender_name, reply_to_email, default_language, approval_required_from_day").single();
+    if (org) orgValues = {
+      senderName: org.sender_name ?? org.name ?? "", replyTo: org.reply_to_email ?? "",
+      defaultLanguage: org.default_language, approval: org.approval_required_from_day !== null,
+    };
   }
 
   const fmt = new Intl.DateTimeFormat(locale === "fr" ? "fr-CA" : "en-CA", { dateStyle: "medium", timeStyle: "short", timeZone: "America/Toronto" });
@@ -81,6 +93,18 @@ export default async function SettingsPage({ searchParams }: PageProps<"/app/set
             </div>
           )}
         </div>
+      </Card>
+
+      <Card className="mt-6 p-6">
+        <h2 className="font-semibold">{t.settings.org.title}</h2>
+        <p className="mt-1 text-sm text-ink-muted">{t.settings.org.description}</p>
+        <div className="mt-5"><OrgForm uiLang={locale} values={orgValues} /></div>
+      </Card>
+
+      <Card className="mt-6 p-6">
+        <h2 className="font-semibold">{t.settings.data.title}</h2>
+        <p className="mt-1 text-sm text-ink-muted">{t.settings.data.description}</p>
+        <div className="mt-5"><DataCard uiLang={locale} /></div>
       </Card>
     </div>
   );

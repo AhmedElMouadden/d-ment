@@ -53,7 +53,7 @@ export default async function DashboardPage() {
         <Stat icon={<HandCoins />} label={d.collected} value={money(m.collectedAfterReminderCents)} note={d.collectedCount(m.collectedAfterReminderCount)} highlight />
       </div>
 
-      <div className="grid items-start gap-6 xl:grid-cols-[1.2fr_1fr]">
+      <div className="grid grid-cols-1 items-start gap-6 xl:grid-cols-[1.2fr_1fr]">
         <AgingChart aging={m.aging} labels={d.agingLabels} title={d.aging} money={money} />
 
         <Card className="p-6">
@@ -104,7 +104,7 @@ function AgingChart({ aging, labels, title, money }: { aging: AgingBuckets; labe
       <h2 className="font-semibold">{title}</h2>
       <dl className="mt-5 space-y-3">
         {keys.map((k) => (
-          <div key={k} className="group grid grid-cols-[5.5rem_1fr_auto] items-center gap-3" title={`${labels[k]} : ${money(aging[k])}`}>
+          <div key={k} className="group grid grid-cols-[4.5rem_minmax(0,1fr)_auto] items-center gap-3" title={`${labels[k]} : ${money(aging[k])}`}>
             <dt className="text-sm text-ink-muted">{labels[k]}</dt>
             <div className="h-6 rounded-r bg-surface-muted/60">
               <div
@@ -112,7 +112,7 @@ function AgingChart({ aging, labels, title, money }: { aging: AgingBuckets; labe
                 style={{ width: `${aging[k] ? Math.max(2, (aging[k] / max) * 100) : 0}%` }}
               />
             </div>
-            <dd className="w-28 text-right text-sm font-medium tabular-nums">{money(aging[k])}</dd>
+            <dd className="min-w-24 text-right text-sm font-medium tabular-nums">{money(aging[k])}</dd>
           </div>
         ))}
       </dl>

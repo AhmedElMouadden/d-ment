@@ -12,7 +12,7 @@ export default async function LandingPage() {
   const L = t.landing;
 
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex flex-1 flex-col overflow-x-clip">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
         <Logo name={t.common.appName} />
         <nav className="flex items-center gap-1 sm:gap-2">
