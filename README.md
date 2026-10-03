@@ -77,3 +77,22 @@ Copiez `.env.example` en `.env.local`.
 
 En production, `supabase/cron.sql` programme cette synchro chaque jour via
 pg_cron (palier gratuit de Supabase).
+
+## Étape 4 : tester les courriels
+
+1. **Aperçu sans compte** : `/demo`, puis **Séquences**. Choisissez une étape,
+   changez le ton, la langue ou le texte : l'aperçu se met à jour en direct.
+2. **Envoi réel (test)** : créez un compte Resend gratuit, une clé API dans
+   `RESEND_API_KEY`, et `EMAIL_FROM_ADDRESS=onboarding@resend.dev` (adresse de
+   test de Resend : elle n'envoie qu'à l'adresse de votre compte Resend).
+   Mettez cette adresse comme courriel d'un client sandbox QuickBooks, puis
+   `curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/remind`.
+3. **Désinscription** : le lien en bas du courriel ouvre `/u/<jeton>` ; après
+   confirmation, le client n'est plus jamais relancé.
+4. **Webhook** : dans Resend > Webhooks, ajoutez `<APP_URL>/api/webhooks/resend`
+   et copiez le secret dans `RESEND_WEBHOOK_SECRET`. Les livraisons, rebonds et
+   plaintes apparaissent dans `email_events`.
+
+Pour un domaine à vous (recommandé avant le lancement) : Resend > Domains,
+ajoutez les enregistrements DNS SPF/DKIM indiqués, puis changez
+`EMAIL_FROM_ADDRESS` (ex. `relances@dument.ca`).
