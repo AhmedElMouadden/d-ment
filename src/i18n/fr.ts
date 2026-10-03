@@ -1,12 +1,12 @@
 /** Dictionnaire français (Québec) : langue par défaut. */
 export const fr = {
   meta: {
-    title: "[NOM] · Relance automatique de factures pour QuickBooks",
+    title: "Dûment · Relance automatique de factures pour QuickBooks",
     description:
-      "Connectez QuickBooks en 2 minutes. [NOM] relance vos clients en retard, avec le bon ton, jusqu'au paiement.",
+      "Connectez QuickBooks en 2 minutes. Dûment relance vos clients en retard, avec le bon ton, jusqu'au paiement.",
   },
   common: {
-    appName: "[NOM]",
+    appName: "Dûment",
     language: "Langue",
     switchTo: "English",
     signIn: "Se connecter",
@@ -23,7 +23,7 @@ export const fr = {
     eyebrow: "Pour les PME de services québécoises sur QuickBooks Online",
     title: "Faites-vous payer plus vite, sans y penser.",
     subtitle:
-      "[NOM] relance automatiquement vos clients en retard, au bon moment et avec le bon ton, jusqu'au paiement. Vous gardez la relation, on s'occupe des rappels.",
+      "Dûment relance automatiquement vos clients en retard, au bon moment et avec le bon ton, jusqu'au paiement. Vous gardez la relation, on s'occupe des rappels.",
     ctaPrimary: "Commencer l'essai gratuit",
     ctaSecondary: "Voir la démo",
     noCard: "14 jours gratuits · aucune carte requise",
@@ -48,7 +48,7 @@ export const fr = {
       { name: "Croissance", price: "79 $", period: "/mois", limit: "Factures actives illimitées" },
     ],
     pricingNote: "Prix en dollars canadiens, taxes en sus. Annulable en tout temps.",
-    trust: "[NOM] lit vos factures et envoie des courriels. Rien d'autre : aucun accès à vos comptes bancaires, aucun paiement.",
+    trust: "Dûment lit vos factures et envoie des courriels. Rien d'autre : aucun accès à vos comptes bancaires, aucun paiement.",
     footerPrivacy: "Confidentialité",
   },
   auth: {
@@ -85,6 +85,37 @@ export const fr = {
     activity: "Journal d'envois",
     settings: "Réglages",
     billing: "Abonnement",
+  },
+  settings: {
+    title: "Réglages",
+    qbo: {
+      title: "QuickBooks Online",
+      description: "Dûment lit vos clients, factures et paiements. Il ne modifie jamais rien dans QuickBooks.",
+      connect: "Connecter QuickBooks",
+      reconnect: "Reconnecter QuickBooks",
+      disconnect: "Déconnecter",
+      disconnectConfirm: "Les relances s'arrêteront jusqu'à la prochaine connexion.",
+      syncNow: "Synchroniser maintenant",
+      syncing: "Synchronisation…",
+      connectedTo: "Connecté à",
+      demoCompany: "Compagnie de démonstration",
+      sandbox: "Bac à sable",
+      lastSync: "Dernière synchro",
+      never: "jamais",
+      autoSync: "Synchro automatique chaque jour.",
+      notConnected: "Aucune compagnie QuickBooks connectée.",
+      syncDone: (c: number, i: number, p: number) => `Synchro terminée : ${c} clients, ${i} factures, ${p} nouvellement payée${p > 1 ? "s" : ""}.`,
+      status: {
+        connected: "Connexion réussie. La première synchronisation est en cours.",
+        denied: "Connexion annulée dans QuickBooks.",
+        invalid_state: "La session de connexion a expiré. Réessayez.",
+        error: "La connexion à QuickBooks a échoué. Réessayez dans un instant.",
+        not_configured: "Les clés QuickBooks ne sont pas encore configurées sur le serveur.",
+        expired: "L'accès à QuickBooks a expiré. Reconnectez-le pour reprendre les relances.",
+        sync_error: "La dernière synchronisation a échoué.",
+        demo: "En mode démo, la synchro recharge simplement les données fictives.",
+      },
+    },
   },
   app: {
     welcome: "Bonjour",

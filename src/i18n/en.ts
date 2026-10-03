@@ -2,12 +2,12 @@ import type { Dictionary } from "./fr";
 
 export const en: Dictionary = {
   meta: {
-    title: "[NOM] · Automatic invoice reminders for QuickBooks",
+    title: "Dûment · Automatic invoice reminders for QuickBooks",
     description:
-      "Connect QuickBooks in 2 minutes. [NOM] follows up with late-paying clients, in the right tone, until they pay.",
+      "Connect QuickBooks in 2 minutes. Dûment follows up with late-paying clients, in the right tone, until they pay.",
   },
   common: {
-    appName: "[NOM]",
+    appName: "Dûment",
     language: "Language",
     switchTo: "Français",
     signIn: "Sign in",
@@ -24,7 +24,7 @@ export const en: Dictionary = {
     eyebrow: "For Québec service businesses on QuickBooks Online",
     title: "Get paid faster, without thinking about it.",
     subtitle:
-      "[NOM] automatically follows up with late-paying clients, at the right time and in the right tone, until they pay. You keep the relationship; we handle the reminders.",
+      "Dûment automatically follows up with late-paying clients, at the right time and in the right tone, until they pay. You keep the relationship; we handle the reminders.",
     ctaPrimary: "Start free trial",
     ctaSecondary: "See the demo",
     noCard: "14 days free · no credit card required",
@@ -49,7 +49,7 @@ export const en: Dictionary = {
       { name: "Growth", price: "$79", period: "/month", limit: "Unlimited active invoices" },
     ],
     pricingNote: "Prices in Canadian dollars, plus applicable taxes. Cancel anytime.",
-    trust: "[NOM] reads your invoices and sends emails. Nothing else: no access to bank accounts, no payments.",
+    trust: "Dûment reads your invoices and sends emails. Nothing else: no access to bank accounts, no payments.",
     footerPrivacy: "Privacy",
   },
   auth: {
@@ -86,6 +86,37 @@ export const en: Dictionary = {
     activity: "Email log",
     settings: "Settings",
     billing: "Billing",
+  },
+  settings: {
+    title: "Settings",
+    qbo: {
+      title: "QuickBooks Online",
+      description: "Dûment reads your clients, invoices and payments. It never changes anything in QuickBooks.",
+      connect: "Connect QuickBooks",
+      reconnect: "Reconnect QuickBooks",
+      disconnect: "Disconnect",
+      disconnectConfirm: "Reminders will stop until you reconnect.",
+      syncNow: "Sync now",
+      syncing: "Syncing…",
+      connectedTo: "Connected to",
+      demoCompany: "Demo company",
+      sandbox: "Sandbox",
+      lastSync: "Last sync",
+      never: "never",
+      autoSync: "Syncs automatically every day.",
+      notConnected: "No QuickBooks company connected.",
+      syncDone: (c: number, i: number, p: number) => `Sync complete: ${c} clients, ${i} invoices, ${p} newly paid.`,
+      status: {
+        connected: "Connected. The first sync is running.",
+        denied: "Connection cancelled in QuickBooks.",
+        invalid_state: "The connection session expired. Please try again.",
+        error: "Connecting to QuickBooks failed. Please try again shortly.",
+        not_configured: "QuickBooks keys aren't configured on the server yet.",
+        expired: "QuickBooks access expired. Reconnect it to resume reminders.",
+        sync_error: "The last sync failed.",
+        demo: "In demo mode, syncing simply reloads the sample data.",
+      },
+    },
   },
   app: {
     welcome: "Hello",

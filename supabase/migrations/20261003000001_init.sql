@@ -1,5 +1,5 @@
 -- =============================================================================
--- [NOM] : schéma initial
+-- Dûment : schéma initial
 -- Relance automatique des factures impayées (QuickBooks Online -> courriels)
 --
 -- Principes :
