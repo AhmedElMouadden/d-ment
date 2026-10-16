@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces";
+
+/*
+ * Design tokens. Colours are proposals pending the official brand guide:
+ * forest green as the primary, warm linen neutrals, a muted moss accent.
+ * All text/background pairs below meet WCAG 2.2 AA (4.5:1) or better.
+ */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+
+  --color-paper: #fbf9f4; /* page background, warm white */
+  --color-linen: #f3efe6; /* alternate section background */
+  --color-sand: #e9e2d3; /* subtle fills */
+  --color-line: #ddd5c4; /* borders */
+  --color-ink: #1d2420; /* body text — 15.1:1 on paper */
+  --color-muted: #505b55; /* secondary text — 6.7:1 on paper, 6.2:1 on linen */
+  --color-forest: #1f4d3a; /* primary — 9.2:1 on paper, white text 9.6:1 */
+  --color-forest-deep: #143326;
+  --color-forest-soft: #e3ece5;
+  --color-moss: #4b6640; /* accent for icons, rules, eyebrows — 6.1:1 on paper, 5.6:1 on linen */
+  --color-clay: #8a4c2b; /* warm accent (preview badges) — 5.6:1 on clay-soft, 6.3:1 on paper */
+  --color-clay-soft: #f6e8dc;
+  --color-danger: #a12d22;
+  --color-danger-soft: #fbe9e6;
+  --color-success: #1f6a3b;
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-wrap: balance;
+    font-weight: 500;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-forest);
+    outline-offset: 3px;
+    border-radius: 0.375rem;
+  }
+  .on-dark :focus-visible {
+    outline-color: #f3efe6;
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

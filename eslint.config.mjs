@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Site Daoust/Forget : application autonome avec sa propre config.
+    "daoust-forget/**",
   ]),
 ]);
 
